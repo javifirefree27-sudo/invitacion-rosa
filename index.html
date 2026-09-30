@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una invitación para Rosa 💙</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(135deg, #dff5ff, #f8edff, #eaf9ff);
+  color: #30445c;
+  overflow-x: hidden;
+}
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 16px;
+  position: relative;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255,255,255,.9);
+  border-radius: 30px;
+  padding: 32px 22px;
+  text-align: center;
+  box-shadow: 0 15px 45px rgba(69,116,150,.2);
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #3d82b8;
+  font-size: 32px;
+  margin: 10px 0 15px;
+}
+
+h2 {
+  color: #477da5;
+  font-size: 25px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.subtitle {
+  color: #71869b;
+}
+
+.heart {
+  font-size: 58px;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+/* Mariposas */
+.butterfly {
+  position: fixed;
+  font-size: 28px;
+  z-index: 1;
+  animation: fly 10s linear infinite;
+  pointer-events: none;
+}
+
+.b1 { left: 5%; top: 20%; animation-delay: 0s; }
+.b2 { right: 8%; top: 65%; animation-delay: 3s; }
+.b3 { left: 75%; top: 10%; animation-delay: 6s; }
+.b4 { left: 15%; bottom: 10%; animation-delay: 1s; }
+
+@keyframes fly {
+  0% { transform: translate(0,0) rotate(0deg); }
+  25% { transform: translate(30px,-40px) rotate(10deg); }
+  50% { transform: translate(-20px,-80px) rotate(-10deg); }
+  75% { transform: translate(40px,-30px) rotate(10deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+
+/* Botones */
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  min-height: 90px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.yes {
+  background: #78c8ed;
+  color: white;
+  border-radius: 50px;
+  padding: 15px 28px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(71,151,194,.3);
+  transition: transform .25s ease;
+  z-index: 5;
+}
+
+.no {
+  background: #e8edf1;
+  color: #6b7884;
+  border-radius: 50px;
+  padding: 13px 22px;
+  font-size: 17px;
+  position: relative;
+  transition: left .15s, top .15s;
+}
+
+/* Ocultar */
+.hidden {
+  display: none !important;
+}
+
+/* Formularios */
+input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #c5e5f5;
+  border-radius: 15px;
+  font-size: 18px;
+  margin: 8px 0 20px;
+  background: #fbfeff;
+  color: #40566b;
+}
+
+.continue {
+  background: #5aa9d6;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Actividades */
+.activities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.activity {
+  background: white;
+  border: 3px solid transparent;
+  border-radius: 22px;
+  padding: 15px 8px;
+  box-shadow: 0 5px 18px rgba(50,100,130,.12);
+  transition: .2s;
+}
+
+.activity.selected {
+  border-color: #6fc1e8;
+  background: #eefaff;
+  transform: scale(1.03);
+}
+
+.activity .picture {
+  font-size: 45px;
+  margin-bottom: 7px;
+}
+
+.activity span {
+  font-size: 15px;
+  font-weight: bold;
+  color: #536d82;
+}
+
+.finish {
+  margin-top: 22px;
+  background: #6bb8df;
+  color: white;
+  padding: 15px 28px;
+  border-radius: 30px;
+  font-size: 18px;
+}
+
+/* Carta */
+.letter {
+  text-align: left;
+  background: #fffdf8;
+  border-radius: 20px;
+  padding: 24px;
+  margin-top: 20px;
+  box-shadow: 0 5px 20px rgba(100,80,50,.1);
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.signature {
+  text-align: right;
+  font-size: 20px;
+  color: #4c8db5;
+  margin-top: 25px;
+}
+
+.small {
+  font-size: 14px;
+  color: #8a9aaa;
+  margin-top: 20px;
+}
+
+@media (max-width: 400px) {
+  h1 { font-size: 28px; }
+  .activities { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="butterfly b1">🦋</div>
+<div class="butterfly b2">🦋</div>
+<div class="butterfly b3">🦋</div>
+<div class="butterfly b4">🦋</div>
+
+<!-- PANTALLA 1 -->
+<section class="screen" id="screen1">
+  <div class="card">
+
+    <div class="heart">💙</div>
+
+    <h1>Rosa...</h1>
+
+    <p>
+      Hay una pequeña pregunta que quiero hacerte.
+    </p>
+
+    <h2>¿Te gustaría ir a una cita conmigo?</h2>
+
+    <p class="subtitle">
+      Prometo que será un momento bonito para los dos. 🦋
+    </p>
+
+    <div class="buttons">
+      <button class="yes" id="yesButton">
+        Sí 🩵
+      </button>
+
+      <button class="no" id="noButton">
+        No 😵‍💫
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PANTALLA 2 -->
+<section class="screen hidden" id="screen2">
+  <div class="card">
+
+    <div class="heart">🦋</div>
+
+    <h1>Entonces... 💙</h1>
+
+    <p>
+      Ahora quiero que tú elijas cuándo hacemos nuestra cita.
+    </p>
+
+    <h2>📅 Elige el día</h2>
+
+    <input type="date" id="dateInput">
+
+    <h2>⏰ Elige la hora</h2>
+
+    <input type="time" id="timeInput">
+
+    <button class="continue" id="dateButton">
+      Continuar 🩵
+    </button>
+
+    <p class="small">
+      Tú eliges el momento. Yo me encargo de disfrutarlo contigo.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- PANTALLA 3 -->
+<section class="screen hidden" id="screen3">
+  <div class="card">
+
+    <div class="heart">💕</div>
+
+    <h1>Ahora falta decidir...</h1>
+
+    <p>
+      ¿Qué te gustaría hacer conmigo?
+    </p>
+
+    <p class="subtitle">
+      Puedes elegir una o varias opciones.
+    </p>
+
+    <div class="activities">
+
+      <button class="activity" data-choice="Ir al cine">
+        <div class="picture">🎬🍿</div>
+        <span>Ir al cine</span>
+      </button>
+
+      <button class="activity" data-choice="Comer tacos">
+        <div class="picture">🌮</div>
+        <span>Comer tacos</span>
+      </button>
+
+      <button class="activity" data-choice="Comer un helado">
+        <div class="picture">🍦</div>
+        <span>Comer un helado</span>
+      </button>
+
+      <button class="activity" data-choice="Comer sushi">
+        <div class="picture">🍣</div>
+        <span>Comer sushi</span>
+      </button>
+
+      <button class="activity" data-choice="Ir al parque">
+        <div class="picture">🌳🌷</div>
+        <span>Ir al parque</span>
+      </button>
+
+      <button class="activity" data-choice="Ir a Amador a manejar bici">
+        <div class="picture">🚲🌊</div>
+        <span>Amador en bici</span>
+      </button>
+
+    </div>
+
+    <button class="finish" id="finishButton">
+      Esta es mi elección 💙
+    </button>
+
+  </div>
+</section>
+
+
+<!-- PANTALLA 4 -->
+<section class="screen hidden" id="screen4">
+  <div class="card">
+
+    <div class="heart">💙</div>
+
+    <h1>Para ti, Rosa</h1>
+
+    <p class="subtitle">
+      Y ahora quiero decirte algo que quizá no siempre sé expresar.
+    </p>
+
+    <div class="letter">
+
+      <p>
+        Rosa,
+      </p>
+
+      <p>
+        Quiero que sepas que eres una persona muy especial para mí.
+        Desde que llegaste a mi vida, has conseguido ocupar un lugar
+        que cada día se vuelve más importante.
+      </p>
+
+      <p>
+        Me encanta compartir momentos contigo, reírnos, hablar,
+        salir y simplemente estar juntos. Son esas cosas pequeñas
+        las que hacen que estar contigo tenga un significado enorme
+        para mí.
+      </p>
+
+      <p>
+        No hice esta invitación solamente para preguntarte si quieres
+        salir conmigo. La hice porque quería recordarte que detrás
+        de cada momento que compartimos hay alguien que está muy
+        feliz de tenerte en su vida.
+      </p>
+
+      <p>
+        Quiero seguir creando recuerdos contigo, conocer nuevos
+        lugares, vivir nuevas experiencias y disfrutar de todas esas
+        pequeñas aventuras que todavía nos quedan.
+      </p>
+
+      <p>
+        Y aunque a veces las palabras no me salen exactamente como
+        quisiera, hay algo que sí quiero que tengas muy claro:
+      </p>
+
+      <p style="text-align:center;font-size:25px;color:#4d91bd;">
+        <strong>Te amo. ❤️</strong>
+      </p>
+
+      <p>
+        Gracias por ser tú, por estar en mi vida y por permitirme
+        compartir una parte de la mía contigo.
+      </p>
+
+      <p class="signature">
+        Con todo mi amor,<br>
+        <strong>Javier 💙</strong>
+      </p>
+
+    </div>
+
+    <p class="small">
+      Nuestra próxima aventura comienza con un simple “sí”. 🦋
+    </p>
+
+  </div>
+</section>
+
+
+<script>
+
+const yesButton = document.getElementById("yesButton");
+const noButton = document.getElementById("noButton");
+
+let yesScale = 1;
+
+/* El botón Sí crece */
+function growYes() {
+  yesScale += 0.18;
+
+  if (yesScale > 2.5) {
+    yesScale = 2.5;
+  }
+
+  yesButton.style.transform = `scale(${yesScale})`;
+}
+
+/* El botón No se escapa */
+function escapeNo() {
+
+  const maxX = Math.max(80, window.innerWidth - 170);
+  const maxY = Math.max(80, window.innerHeight - 180);
+
+  const x = Math.random() * maxX - maxX / 2;
+  const y = Math.random() * maxY - maxY / 2;
+
+  noButton.style.position = "fixed";
+  noButton.style.left = `${window.innerWidth / 2 + x}px`;
+  noButton.style.top = `${window.innerHeight / 2 + y}px`;
+
+  growYes();
+}
+
+noButton.addEventListener("mouseenter", escapeNo);
+noButton.addEventListener("touchstart", function(e) {
+  e.preventDefault();
+  escapeNo();
+});
+
+
+/* Sí */
+yesButton.addEventListener("click", function() {
+
+  document.getElementById("screen1").classList.add("hidden");
+  document.getElementById("screen2").classList.remove("hidden");
+
+  window.scrollTo(0,0);
+});
+
+
+/* Fecha y hora */
+document.getElementById("dateButton").addEventListener("click", function() {
+
+  const date = document.getElementById("dateInput").value;
+  const time = document.getElementById("timeInput").value;
+
+  if (!date || !time) {
+    alert("Primero elige un día y una hora 💙");
+    return;
+  }
+
+  document.getElementById("screen2").classList.add("hidden");
+  document.getElementById("screen3").classList.remove("hidden");
+
+  window.scrollTo(0,0);
+});
+
+
+/* Selección de actividades */
+const activities = document.querySelectorAll(".activity");
+
+activities.forEach(activity => {
+
+  activity.addEventListener("click", function() {
+    this.classList.toggle("selected");
+  });
+
+});
+
+
+/* Final */
+document.getElementById("finishButton").addEventListener("click", function() {
+
+  const selected = document.querySelectorAll(".activity.selected");
+
+  if (selected.length === 0) {
+    alert("Elige al menos una opción 💙");
+    return;
+  }
+
+  document.getElementById("screen3").classList.add("hidden");
+  document.getElementById("screen4").classList.remove("hidden");
+
+  window.scrollTo(0,0);
+});
+
+</script>
+
+</body>
+</html>
